@@ -174,7 +174,6 @@ class _AddUpdateUserState extends State<AddUpdateUserScreen> {
                     }
 
                   }
-
                 }
                     : null,
                 child: Text(_user != null ? "Update" : "Submit"),
