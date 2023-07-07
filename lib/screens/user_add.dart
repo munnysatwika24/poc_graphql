@@ -173,6 +173,7 @@ class _AddUpdateUserState extends State<AddUpdateUserScreen> {
                       snackBar("Failed to create user", context);
                     }
                   }
+
                 }
                     : null,
                 child: Text(_user != null ? "Update" : "Submit"),
