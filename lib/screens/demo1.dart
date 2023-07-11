@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApps extends StatelessWidget {
+   MyApps({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
       QueryOptions(
         document: gql(
           """query {
-  characters(filter:{name:"Alien morty"}) {
+  characters() {
     results {
       name 
       image

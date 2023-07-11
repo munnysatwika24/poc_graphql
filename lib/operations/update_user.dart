@@ -1,4 +1,5 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
+
 import '../queries.dart';
 
 Future<bool> updateUser(
@@ -13,7 +14,8 @@ Future<bool> updateUser(
   QueryResult queryResult = await qlClient.mutate( // mutate method , as we are mutating value
     MutationOptions( // mutation options
         fetchPolicy: FetchPolicy.networkOnly,
-        document: gql(updateUserMutation,
+        document: gql(
+          updateUserMutation,
         ),
         variables: {
           "id": int.tryParse(id ?? ''), // it takes int so converting

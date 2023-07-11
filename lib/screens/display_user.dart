@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../operations/get_users.dart';
 
 class DisplayUser extends StatefulWidget {
@@ -13,11 +14,11 @@ class _DisplayUserState extends State<DisplayUser> {
 
   @override
   void initState() {
-    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       setState(() {
         id = ModalRoute.of(context)?.settings.arguments as String?; // this is how to get data from one screen to another in named route
       });
-    // });
+    });
     super.initState();
   }
 
@@ -52,6 +53,10 @@ class _DisplayUserState extends State<DisplayUser> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
+
+                    //  as you seee it's not very good ui
+                    //  but you can see our data here
+                    //  now let's see api call
                     Text("Id: " + snapshot.data?['id']),
                     Text("Name: " + snapshot.data?['name']),
                     Text("Email: " + snapshot.data?['email']),

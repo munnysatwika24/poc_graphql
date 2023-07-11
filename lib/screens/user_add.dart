@@ -1,12 +1,11 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:poc_graphql/snackbar.dart';
 
 import '../operations/create_user.dart';
 import '../operations/get_users.dart';
 import '../operations/update_user.dart';
+import '../snackbar.dart';
+
 
 class AddUpdateUserScreen extends StatefulWidget {
   const AddUpdateUserScreen({Key? key}) : super(key: key);
@@ -16,6 +15,8 @@ class AddUpdateUserScreen extends StatefulWidget {
 }
 
 class _AddUpdateUserState extends State<AddUpdateUserScreen> {
+  // that's all for api call now let's see ui
+  //  it's simple 3 field and one button to submit
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -28,9 +29,9 @@ class _AddUpdateUserState extends State<AddUpdateUserScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _userId = ModalRoute.of(context)?.settings.arguments as String?; // id passing from main screen
+      _userId = ModalRoute.of(context)?.settings.arguments as String?; // id passing from main screen 
 
-      if (_userId != null) { // if i am getting id then it's for update so
+      if (_userId != null) { // if i am getting id then it's for update so 
         //
         loadData(_userId ?? '');
       }
@@ -56,12 +57,18 @@ class _AddUpdateUserState extends State<AddUpdateUserScreen> {
   loadData(String id) async {
     //  using that id to fetch data as we see just how to read single data is same
     _user = await getUser(id: int.tryParse(id)); // getUser takes' int so convert string to int
-    if (_user != null && _user!.isNotEmpty) { // after getting data assigning data to textfield
+    if (_user != null && _user!.isNotEmpty) { // after getting data i am assigning data to textfield 
       _nameController.text = _user?['name'] ?? '';
       _emailController.text = _user?['email'] ?? '';
       _jobController.text = _user?['job_title'] ?? '';
     }
   }
+
+
+// that's all now let's see this in action
+//  let's refresh 
+//  we got our data
+//  now let's see how did we displayed this
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +148,8 @@ class _AddUpdateUserState extends State<AddUpdateUserScreen> {
               child: ElevatedButton(
                 onPressed: allowToSubmit()
                     ? () async {
-                  //  once you filled all data it will validate
+                  //  once you filled all data it will validate email and
+                  // NOTE: i am using same screen for create and update so you are going to see both code here
                   FocusScope.of(context).requestFocus(FocusNode());
                   var reg = RegExp(
                       r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$");
@@ -150,7 +158,7 @@ class _AddUpdateUserState extends State<AddUpdateUserScreen> {
                     return;
                   }
                   if (_user != null) { // if _user is not null it means it's update so here
-                    var res = await updateUser(
+                    var res = await updateUser( // et's see update api call
                       id: _user?['id'],
                       email: email,
                       job: job,
@@ -164,15 +172,15 @@ class _AddUpdateUserState extends State<AddUpdateUserScreen> {
                       //  it got updated
                     }
                   } else {
+                    //  i am passing values to createUser method which we just saw
                     var res = await createUser(
                         email: email, job: job, name: name);
                     if (res) {// in return it will be true or false
                       snackBar("User created", context);
-                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();// after successful create close this screen
                     } else {
                       snackBar("Failed to create user", context);
                     }
-
                   }
                 }
                     : null,

@@ -1,4 +1,5 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
+
 import '../queries.dart';
 
 Future<List> getAllUsers() async {
@@ -11,6 +12,7 @@ Future<List> getAllUsers() async {
   );
   QueryResult queryResult = await qlClient.query( // here it's get type so using query method
     QueryOptions(
+      fetchPolicy: FetchPolicy.networkOnly,
       document: gql(
         getAllUsersQuery, // let's see query string
       ),

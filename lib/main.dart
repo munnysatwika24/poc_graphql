@@ -1,7 +1,9 @@
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:poc_graphql/getx/getx_screens.dart';
 import 'package:poc_graphql/screens/demo1.dart';
 import 'package:poc_graphql/screens/display_user.dart';
 import 'package:poc_graphql/snackbar.dart';
@@ -9,13 +11,15 @@ import 'package:poc_graphql/snackbar.dart';
 import 'operations/all_users.dart';
 import 'operations/delete_user.dart';
 import 'screens/user_add.dart';
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await initHiveForFlutter(); // for cache
-  runApp( Demo());
+// this Main method for graphQl
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await initHiveForFlutter(); // for cache
+//   runApp( Demo());
+// }
+void main(){
+  runApp(MyGetX());
 }
-
 
 class Demo extends StatelessWidget {
   const Demo({Key? key}) : super(key: key);
