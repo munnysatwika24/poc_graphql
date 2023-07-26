@@ -8,18 +8,20 @@ class DetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text("Detail Screen"),),
-        body: Column(
-          children: [
-            Center(child: Text("Welcome To Magical World")),
-            Row(
-              children: [
-                IconButton(icon:Icon(Icons.arrow_back_ios_rounded), onPressed: (){
-                  Get.back();
-                }, ),
-                Text("Back")
-              ],
-            )
-          ],
+        body: Padding(
+          padding: const EdgeInsets.only(top: 18),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Center(
+                  child: Text("Welcome To Magical World")
+              ),ElevatedButton(onPressed: (){
+                Get.snackbar("Hello", "Darlingsssssssss",
+                    snackPosition: SnackPosition.TOP);
+              }, child: Text("press"))
+
+            ],
+          ),
         ),
       );
 

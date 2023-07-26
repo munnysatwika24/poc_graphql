@@ -2,7 +2,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:poc_graphql/UI/home_screens.dart';
 import 'package:poc_graphql/getx/getx_screens.dart';
 import 'package:poc_graphql/screens/demo1.dart';
 import 'package:poc_graphql/screens/display_user.dart';
@@ -17,9 +19,13 @@ import 'screens/user_add.dart';
 //   await initHiveForFlutter(); // for cache
 //   runApp( Demo());
 // }
+
 void main(){
-  runApp(MyGetX());
+  runApp(const GetMaterialApp(debugShowCheckedModeBanner:false,home: HomePage()));
 }
+// void main(){
+//   runApp(MyGetX());
+// }
 
 class Demo extends StatelessWidget {
   const Demo({Key? key}) : super(key: key);
